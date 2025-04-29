@@ -1,11 +1,11 @@
 [toolchain]
-
+anchor_version = "0.31.1"
 [features]
 resolution = true
 skip-lint = false
 
 [programs.localnet]
-anchor = "9G5BStcx7rpUvPG6jJVbhvqhwQTGKSFy2J6ZdMEsJwnH"
+tickr = "AeXnytP4SKPSeUm176KHoLSV54AAn11iF8AaMctWrDPw"
 
 [registry]
 url = "https://api.apr.dev"
