@@ -20,4 +20,13 @@ pub mod tickr {
         ctx.accounts.init(name, fee, &ctx.bumps)?;
         Ok(())
     }
+
+    pub fn list(ctx: Context<List>, price: u64) -> Result<()> {
+        ctx.accounts.create_listing(price, &ctx.bumps)?;
+        ctx.accounts.deposit_nft()
+    }
+
+    pub fn purchase(ctx: Context<Purchase>) -> Result<()> {
+        Ok(())
+    }
 }
