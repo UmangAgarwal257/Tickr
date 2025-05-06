@@ -21,12 +21,24 @@ pub mod tickr {
         Ok(())
     }
 
+    pub fn setup_manager(ctx: Context<SetupManager>) -> Result<()> {
+        ctx.accounts.setup_manager(ctx.bumps.manager)
+    }
+
+    pub fn withdraw_from_treasury(ctx: Context<WithdrawFromTreasury>, amount: u64) -> Result<()> {
+        ctx.accounts.withdraw_from_treasury(amount)
+    }
+
     pub fn list(ctx: Context<List>, price: u64) -> Result<()> {
         ctx.accounts.create_listing(price, &ctx.bumps)?;
         ctx.accounts.deposit_nft()
     }
 
+    pub fn delist(ctx: Context<Delist>) -> Result<()> {
+        ctx.accounts.withdraw_nft()
+    }
+
     pub fn purchase(ctx: Context<Purchase>) -> Result<()> {
-        Ok(())
+        ctx.accounts.send_sol()
     }
 }
