@@ -21,7 +21,9 @@ pub struct CreateEvent<'info> {
     pub event: Signer<'info>,
     pub system_program: Program<'info, System>,
     #[account(address = MPL_CORE_ID)]
+    /// CHECK: This is checked by the address constraint
     pub mpl_core_program: UncheckedAccount<'info>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
     pub organizer: UncheckedAccount<'info>,
 }
 

@@ -25,6 +25,14 @@ pub mod tickr {
         ctx.accounts.setup_manager(ctx.bumps.manager)
     }
 
+    pub fn create_event(ctx: Context<CreateEvent>, args: CreateEventArgs) -> Result<()> {
+        ctx.accounts.create_event(args)
+    }
+
+    pub fn create_ticket(ctx: Context<CreateTicket>, args: CreateTicketArgs) -> Result<()> {
+        ctx.accounts.create_ticket(args)
+    }
+
     pub fn withdraw_from_treasury(ctx: Context<WithdrawFromTreasury>, amount: u64) -> Result<()> {
         ctx.accounts.withdraw_from_treasury(amount)
     }
