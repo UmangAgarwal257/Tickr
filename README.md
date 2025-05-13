@@ -1,3 +1,5 @@
+**Deployed Contract Devnet Address:** AeXnytP4SKPSeUm176KHoLSV54AAn11iF8AaMctWrDPw
+
 # Tickr - Blockchain Ticketing System
 
 Tickr is a decentralized ticketing platform built on Solana that facilitates event management, ticket issuance, and secondary market transactions with full transparency and reduced fraud.
