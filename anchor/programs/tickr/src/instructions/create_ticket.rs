@@ -187,23 +187,25 @@ impl<'info> CreateTicket<'info> {
             schema: Some(ExternalPluginAdapterSchema::Binary),
         }));
 
-        let signer_key = self.organizer.key();
-
-        let signer_seeds = &[b"manager", signer_key.as_ref(), &[self.manager.bump]];
+        let organizer_key = self.organizer.key();
+        let seeds = &[b"manager", organizer_key.as_ref(), &[self.manager.bump]];
+        let signer_seeds = &[&seeds[..]];
 
         // Create the Ticket
         CreateV2CpiBuilder::new(&self.mpl_core_program.to_account_info())
             .asset(&self.ticket.to_account_info())
             .collection(Some(&self.event.to_account_info()))
             .payer(&self.payer.to_account_info())
+            // Use manager as authority without re-borrowing organizer
             .authority(Some(&self.manager.to_account_info()))
+            // Use payer as owner to avoid organizer borrowing conflicts
             .owner(Some(&self.payer.to_account_info()))
             .system_program(&self.system_program.to_account_info())
             .name(args.name)
             .uri(args.uri)
             .plugins(ticket_plugin)
             .external_plugin_adapters(ticket_external_plugin)
-            .invoke_signed(&[signer_seeds])?;
+            .invoke_signed(signer_seeds)?;
 
         Ok(())
     }
